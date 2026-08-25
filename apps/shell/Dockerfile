@@ -12,7 +12,7 @@ ENV CART_REMOTE=$CART_REMOTE
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml tsconfig.base.json ./
 COPY apps/shell/package.json apps/shell/
 COPY packages/package.json packages/
-RUN pnpm install --frozen-lockfile
+RUN --mount=type=cache,target=/pnpm-store pnpm install --frozen-lockfile --store-dir=/pnpm-store
 
 COPY . .
 RUN pnpm --filter @acme/shell build
