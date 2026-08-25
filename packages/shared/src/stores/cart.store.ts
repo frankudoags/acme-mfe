@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { persist, createJSONStorage } from 'zustand/middleware'
 
 export interface CartItem {
   id: string
@@ -14,19 +15,27 @@ interface CartState {
   clear: () => void
 }
 
-export const useCartStore = create<CartState>((set) => ({
-  items: [],
-  add: (item) =>
-    set((s) => {
-      const found = s.items.find((i) => i.id === item.id)
-      if (found) {
-        return { items: s.items.map((i) => (i.id === item.id ? { ...i, qty: i.qty + item.qty } : i)) }
-      }
-      return { items: [...s.items, item] }
+export const useCartStore = create<CartState>()(
+  persist(
+    (set) => ({
+      items: [],
+      add: (item) =>
+        set((s) => {
+          const found = s.items.find((i) => i.id === item.id)
+          if (found) {
+            return { items: s.items.map((i) => (i.id === item.id ? { ...i, qty: i.qty + item.qty } : i)) }
+          }
+          return { items: [...s.items, item] }
+        }),
+      remove: (id) => set((s) => ({ items: s.items.filter((i) => i.id !== id) })),
+      clear: () => set({ items: [] }),
     }),
-  remove: (id) => set((s) => ({ items: s.items.filter((i) => i.id !== id) })),
-  clear: () => set({ items: [] }),
-}))
+    {
+      name: 'acme-cart',
+      storage: createJSONStorage(() => localStorage),
+    },
+  ),
+)
 
 export const useCartItems = () => useCartStore((s) => s.items)
 export const useCartCount = () => useCartStore((s) => s.items.reduce((n, i) => n + i.qty, 0))
