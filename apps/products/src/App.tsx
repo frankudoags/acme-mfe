@@ -6,7 +6,6 @@ import {
   Card,
   CardContent,
   Badge,
-  type Product,
 } from '@acme/packages'
 
 export default function App() {
