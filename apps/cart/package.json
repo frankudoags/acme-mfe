@@ -1,0 +1,14 @@
+{
+  "name": "@acme/cart",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 5003 --strictPort",
+    "build": "vite build",
+    "preview": "vite preview --port 5003 --strictPort"
+  },
+  "dependencies": {
+    "@acme/packages": "workspace:*"
+  }
+}

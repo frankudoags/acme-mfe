@@ -1,0 +1,14 @@
+{
+  "name": "@acme/shell",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 5000 --strictPort",
+    "build": "vite build",
+    "preview": "vite preview --port 5000 --strictPort"
+  },
+  "dependencies": {
+    "@acme/packages": "workspace:*"
+  }
+}
