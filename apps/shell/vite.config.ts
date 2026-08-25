@@ -14,7 +14,7 @@ export default defineConfig({
     federation({
       name: 'shell',
       remotes,
-      shared: ['react', 'react-dom', '@acme/packages'],
+      shared: ['react', 'react-dom', '@acme/packages', '@tanstack/react-query', 'zustand'],
     }),
   ],
   build: {

@@ -11,7 +11,7 @@ export default defineConfig({
       exposes: {
         './App': './src/App.tsx',
       },
-      shared: ['react', 'react-dom', '@acme/packages'],
+      shared: ['react', 'react-dom', '@acme/packages', '@tanstack/react-query', 'zustand'],
     }),
   ],
   build: {
