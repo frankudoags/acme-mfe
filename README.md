@@ -60,11 +60,11 @@ cargo run
 pnpm dev
 ```
 
-Open http://localhost:5000
+Open http://localhost:5005
 
 | App      | URL                    |
 | -------- | ---------------------- |
-| Shell    | http://localhost:5000  |
+| Shell    | http://localhost:5005  |
 | Header   | http://localhost:5001  |
 | Products | http://localhost:5002  |
 | Cart     | http://localhost:5003  |
